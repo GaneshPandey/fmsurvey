@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// our dependencies API
+// our dependencies
 import * as SurveyAPI from './utils/SurveyAPI'
 import BodyResponse from './utils/BodyResponse'
 
@@ -31,20 +31,11 @@ submitAnswers() {
   SurveyAPI.updateAnswer(this.state.surveyId, this.state.content).then(response => {
     // get response from server
     console.log(response);
-    // {
-    //   "status": "ok",
-    //   "survey_id": "001",
-    //   "action": "completion"
-    // }
   })
 }
 
-printContent (){
-  console.log(this.state.content);
-}
-
   render() {
-    // descructuring state object
+    // destructuring state object
     const { surveys, questions } = this.state;
 
     return (
