@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+// our dependencies API
+import * as SurveyAPI from './utils/SurveyAPI'
 import './App.css';
 
 class App extends Component {
+  state = {
+    surveys: [],
+  }
+
+  componentDidMount(){
+    SurveyAPI.getAll().then(surveys => {
+      this.setState({ surveys, isFetching: false });
+    });
+  }
+
   render() {
+    // descructuring state object
+    const { surveys } = this.state;
+    console.log(surveys); // checking API is working properly
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {
+          surveys.map((survey)=>(
+            <li key={survey.id}>{survey.title}</li>
+          ))
+        }
       </div>
     );
   }
