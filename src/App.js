@@ -4,6 +4,9 @@ import React, { Component } from 'react';
 import * as SurveyAPI from './utils/SurveyAPI'
 import BodyResponse from './utils/BodyResponse'
 
+// SurveyList component
+import SurveyList from './components/SurveyList'
+
 import './App.css';
 
 class App extends Component {
@@ -13,6 +16,7 @@ class App extends Component {
     questions: [],
     content: BodyResponse,
     surveyId: '001',
+    displayQuestion: false,
   }
 
   componentDidMount() {
@@ -36,16 +40,13 @@ submitAnswers() {
 
   render() {
     // destructuring state object
-    const { surveys, questions } = this.state;
+    const { surveys, questions, isFetching } = this.state;
 
     return (
       <div className="App">
-        {
-          surveys.map((survey)=>(
-            <li key={survey.id}>{survey.title}</li>
-          ))
-        }
-        <button type="button" onClick={()=> this.submitAnswers()}>Click Me!</button>
+        {isFetching?
+          <h1>loading...</h1>:
+          <SurveyList surveys={surveys} />}
       </div>
     );
   }
