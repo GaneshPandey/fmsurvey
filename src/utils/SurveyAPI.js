@@ -9,3 +9,9 @@ export const getAll = () =>
   fetch(`${api}/surveys`, { headers })
     .then(res => res.json())
     .then(data => data.surveys)
+
+// get survey questions List  *REQUIRES SurveyID*
+export const get = (surveyId) =>
+  fetch(`${api}/surveys/${surveyId}`, { headers })
+    .then(res => res.json())
+    .then(data => data.survey.questions)

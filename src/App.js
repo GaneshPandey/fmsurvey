@@ -7,18 +7,28 @@ import './App.css';
 class App extends Component {
   state = {
     surveys: [],
+    questions: [],
   }
 
-  componentDidMount(){
+  componentDidMount() {
     SurveyAPI.getAll().then(surveys => {
       this.setState({ surveys, isFetching: false });
     });
   }
 
+getQuestions(id) {
+  SurveyAPI.get(id).then(questions => {
+    this.setState({ questions });
+  });
+}
+
   render() {
     // descructuring state object
-    const { surveys } = this.state;
-    console.log(surveys); // checking API is working properly
+    const { surveys, questions } = this.state;
+    
+    this.getQuestions('001');
+    console.log(questions); // checking API is working properly
+
     return (
       <div className="App">
         {
