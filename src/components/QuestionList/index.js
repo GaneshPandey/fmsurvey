@@ -9,9 +9,8 @@ const QuestionList = (props) => {
 
   return (
     <div className="list-questions">
-    <div>
       <button className="back-button" onClick={anotherSurvey}>Survey List</button>
-    </div>
+
     <ol className="question-list">
       {
         questions.map((question, index)=> (

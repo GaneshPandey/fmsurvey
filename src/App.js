@@ -79,10 +79,8 @@ submitAnswers() {
 
     return (
       <div className="App">
-
         {displayQuestion?displayComponent
           :<SurveyList surveys={surveys} onStartSurvey={(id)=>this.onStartSurvey(id)} />}
-
       </div>
     );
   }

@@ -5,8 +5,8 @@ const Greeting = (props) => {
 
   return (
     <div>
-      <h1>Thank you for Submitting the Response</h1>
-      <button type="button" onClick={anotherSurvey}>Submit Another Survey</button>
+      <h1>Thank you for Submitting Survey</h1>
+      <button type="button" className="submit-button" onClick={anotherSurvey}>Submit Another Survey</button>
     </div>
 
   )
