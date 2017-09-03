@@ -3,15 +3,12 @@ import React from 'react'
 const Survey = (props) => {
 
   // destructuring props
-  const { survey, onStartSurvey } = props;
+  const { survey } = props;
 
   return (
-    <div>
-      <p>{survey.id}</p>
-      <p>{survey.tagline}</p>
-      <p>{survey.title}</p>
-      <button type='button'
-        onClick={()=>onStartSurvey(survey.id)}>start survey</button>
+    <div className="survey-details">
+      <p className="survey-tagline">{survey.tagline}</p>
+      <p className="survey-title">{survey.title}</p>
     </div>
   )
 }

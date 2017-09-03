@@ -10,13 +10,17 @@ const SurveyList = (props) => {
 
   return (
     <div className="list-surveys">
+      <div className="list-surveys-top"></div>
       <ol className="survey-list">
         {
           surveys.map((survey, index)=> (
-            <li key={index}>
+            <li key={index} className="survey-list-item">
+              <div className="survey-avatar"></div>
               <Survey
                 onStartSurvey={onStartSurvey}
                 survey={survey} />
+              <button type='button' className="survey-start"
+                  onClick={()=>onStartSurvey(survey.id)}>start survey</button>
             </li>
           ))
         }
