@@ -99,3 +99,63 @@ body, .app {
   font-size: 20px;
   color: black;
 }
+
+
+
+
+/* questions*/
+.list-questions-top {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid #d5d8df;
+  display: flex;
+}
+
+.question-list {
+  width: 60%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.question-list-item {
+  padding: 20px;
+  background: white;
+  display: flex;
+}
+
+@media (min-width: 600px) {
+  .question-list-item {
+    margin: 20px;
+    border: 1px solid #d5d8df;
+    border-radius: 4px;
+  }
+}
+
+.question-options {
+  font-size: 26px;
+}
+
+.submit-button {
+  padding-left: 20px;
+  margin: 20px;
+  width: 256px;
+  height: 64px;
+  font-size: 26px;
+  outline: none;
+}
+
+.back-button {
+  display: block;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  background-image: url('./icons/arrow-back.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  font-size: 0;
+  /*opacity: 0.4;*/
+  float:right;
+}

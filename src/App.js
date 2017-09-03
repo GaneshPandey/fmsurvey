@@ -70,6 +70,7 @@ submitAnswers() {
       displayComponent =  <QuestionList
         questions={questions}
         saveAnswer={(question_id, value)=>this.saveAnswer(question_id, value)}
+        anotherSurvey={()=>{this.anotherSurvey()}}
         submitAnswers={()=>this.submitAnswers()}
       />;
     } else {
