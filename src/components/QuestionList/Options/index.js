@@ -3,7 +3,7 @@ import React from 'react'
 const Options = (props) => {
 
 // destructuring props
-const { options, questionId } = props;
+const { options, questionId, saveAnswer } = props;
 
 return (
   <ul>
@@ -12,7 +12,7 @@ return (
           <input type="radio"
             name={questionId}
             value={option}
-          />{option}
+            onClick={event => saveAnswer(questionId, event.target.value)}/>{option}
         </li>
     ))}
   </ul>

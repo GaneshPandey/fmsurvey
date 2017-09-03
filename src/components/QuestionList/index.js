@@ -5,7 +5,7 @@ import Options from './Options'
 const QuestionList = (props) => {
 
   // destructuring props
-  const { questions } = props;
+  const { questions, saveAnswer, submitAnswers } = props;
 
   return (
     <div className="question-list">
@@ -14,10 +14,14 @@ const QuestionList = (props) => {
           <li key={index}>{question.title}
             <Options
               questionId={question.id}
-              options={question.options} />
+              options={question.options}
+              saveAnswer={saveAnswer}
+              />
           </li>
         ))
        }
+       <br />
+       <button type="button" onClick={submitAnswers}>Submit Answers</button>
     </div>
   )
 }

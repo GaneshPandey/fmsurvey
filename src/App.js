@@ -17,6 +17,7 @@ class App extends Component {
     questions: [],
     content: BodyResponse,
     surveyId: '',
+    answers: [],
     displayQuestion: false,
   }
 
@@ -40,11 +41,21 @@ onStartSurvey(id){
 }
 
 submitAnswers() {
-  SurveyAPI.updateAnswer(this.state.surveyId, this.state.content).then(response => {
+  SurveyAPI.updateAnswer(this.state.surveyId, this.state.answers).then(response => {
     // get response from server
     console.log(response);
-  })
+  });
 }
+
+  saveAnswer(question_id, value) {
+    this.setState( state=> ({
+      answers: state.answers.filter(
+        response => response.question_id !== question_id)
+        .concat([{ question_id: question_id, value: value }])
+    }));
+    console.log(this.state.answers);
+  }
+
 
   render() {
     // destructuring state object
@@ -53,7 +64,11 @@ submitAnswers() {
     return (
       <div className="App">
         {displayQuestion?
-          <QuestionList questions={questions} />:
+          <QuestionList
+            questions={questions}
+            saveAnswer={(question_id, value)=>this.saveAnswer(question_id, value)}
+            submitAnswers={()=>this.submitAnswers()}
+           />:
           <SurveyList surveys={surveys} onStartSurvey={(id)=>this.onStartSurvey(id)} />}
       </div>
     );
