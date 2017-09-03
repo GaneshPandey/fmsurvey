@@ -6,7 +6,7 @@ import Survey from '../Survey'
 const SurveyList = (props) => {
 
   // destructuring props
-  const { surveys } = props;
+  const { surveys, onStartSurvey } = props;
 
   return (
     <div className="list-surveys">
@@ -14,7 +14,9 @@ const SurveyList = (props) => {
         {
           surveys.map((survey, index)=> (
             <li key={index}>
-              <Survey survey={survey} />
+              <Survey
+                onStartSurvey={onStartSurvey}
+                survey={survey} />
             </li>
           ))
         }

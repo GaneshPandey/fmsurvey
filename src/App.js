@@ -6,6 +6,7 @@ import BodyResponse from './utils/BodyResponse'
 
 // SurveyList component
 import SurveyList from './components/SurveyList'
+import QuestionList from './components/QuestionList'
 
 import './App.css';
 
@@ -15,7 +16,7 @@ class App extends Component {
     surveys: [],
     questions: [],
     content: BodyResponse,
-    surveyId: '001',
+    surveyId: '',
     displayQuestion: false,
   }
 
@@ -27,8 +28,15 @@ class App extends Component {
 
 getQuestions(id) {
   SurveyAPI.get(id).then(questions => {
-    this.setState({ questions });
+    this.setState({ questions});
   });
+}
+
+onStartSurvey(id){
+  this.getQuestions(id)
+  this.setState({ surveyId: id })
+  this.setState({ displayQuestion: true })
+  console.log(id);
 }
 
 submitAnswers() {
@@ -40,13 +48,13 @@ submitAnswers() {
 
   render() {
     // destructuring state object
-    const { surveys, questions, isFetching } = this.state;
+    const { surveys, questions, isFetching, displayQuestion } = this.state;
 
     return (
       <div className="App">
-        {isFetching?
-          <h1>loading...</h1>:
-          <SurveyList surveys={surveys} />}
+        {displayQuestion?
+          <QuestionList questions={questions} />:
+          <SurveyList surveys={surveys} onStartSurvey={(id)=>this.onStartSurvey(id)} />}
       </div>
     );
   }
