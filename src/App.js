@@ -7,6 +7,7 @@ import BodyResponse from './utils/BodyResponse'
 // SurveyList component
 import SurveyList from './components/SurveyList'
 import QuestionList from './components/QuestionList'
+import Greeting from './components/Greetings'
 
 import './App.css';
 
@@ -19,6 +20,7 @@ class App extends Component {
     surveyId: '',
     answers: [],
     displayQuestion: false,
+    isSuccess: false,
   }
 
   componentDidMount() {
@@ -42,8 +44,8 @@ onStartSurvey(id){
 
 submitAnswers() {
   SurveyAPI.updateAnswer(this.state.surveyId, this.state.answers).then(response => {
-    // get response from server
-    console.log(response);
+    if(response.status==="ok")
+      this.setState({ isSuccess: true })
   });
 }
 
@@ -53,23 +55,33 @@ submitAnswers() {
         response => response.question_id !== question_id)
         .concat([{ question_id: question_id, value: value }])
     }));
-    console.log(this.state.answers);
   }
 
+  anotherSurvey() {
+    this.setState({ isSuccess: false, displayQuestion: false })
+  }
 
   render() {
     // destructuring state object
-    const { surveys, questions, isFetching, displayQuestion } = this.state;
+    const { surveys, questions, isFetching, displayQuestion, isSuccess } = this.state;
+
+    let displayComponent = null;
+    if(!isSuccess) {
+      displayComponent =  <QuestionList
+        questions={questions}
+        saveAnswer={(question_id, value)=>this.saveAnswer(question_id, value)}
+        submitAnswers={()=>this.submitAnswers()}
+      />;
+    } else {
+      displayComponent = <Greeting anotherSurvey={()=>this.anotherSurvey()} />;
+    }
 
     return (
       <div className="App">
-        {displayQuestion?
-          <QuestionList
-            questions={questions}
-            saveAnswer={(question_id, value)=>this.saveAnswer(question_id, value)}
-            submitAnswers={()=>this.submitAnswers()}
-           />:
-          <SurveyList surveys={surveys} onStartSurvey={(id)=>this.onStartSurvey(id)} />}
+
+        {displayQuestion?displayComponent
+          :<SurveyList surveys={surveys} onStartSurvey={(id)=>this.onStartSurvey(id)} />}
+
       </div>
     );
   }
