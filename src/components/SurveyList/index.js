@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // Survey Component
 import Survey from '../Survey'
@@ -29,5 +30,9 @@ const SurveyList = (props) => {
   )
 }
 
+SurveyList.propTypes = {
+  surveys: PropTypes.array.isRequired,
+  onStartSurvey: PropTypes.func,
+}
 
 export default SurveyList;

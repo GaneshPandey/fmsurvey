@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 const Greeting = (props) => {
   const { message, anotherSurvey } = props;
@@ -11,5 +12,10 @@ const Greeting = (props) => {
 
   )
 }
+
+Greeting.propTypes = {
+  message: PropTypes.string,
+  anotherSurvey: PropTypes.func,
+};
 
 export default Greeting;

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Options = (props) => {
 
@@ -9,18 +10,22 @@ return (
   <div className="survey-details">
     <p className="survey-title">{questionTitle}</p>
     {options && options.map((option, index)=>(
-        <li key={index}>
-          <p>
+          <p key={index}>
           <input type="radio"
             name={questionId}
             value={option}
             onClick={event => saveAnswer(questionId, event.target.value)}/>{option}
           </p>
-        </li>
     ))}
   </div>
-)
+  )
+}
 
+Options.propTypes = {
+  options: PropTypes.array.isRequired,
+  questionId: PropTypes.string.isRequired,
+  questionTitle: PropTypes.string.isRequired,
+  saveAnswer: PropTypes.func,
 }
 
 export default Options;

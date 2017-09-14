@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Survey = (props) => {
 
@@ -11,6 +12,10 @@ const Survey = (props) => {
       <p className="survey-title">{survey.title}</p>
     </div>
   )
+}
+
+Survey.propTypes = {
+  survey: PropTypes.object.isRequired,
 }
 
 export default Survey;

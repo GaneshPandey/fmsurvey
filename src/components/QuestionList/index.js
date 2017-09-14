@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import Options from './Options'
 
@@ -30,5 +31,11 @@ const QuestionList = (props) => {
   )
 }
 
+QuestionList.propTypes = {
+  questions: PropTypes.array.isRequired,
+  saveAnswer: PropTypes.func,
+  submitAnswers: PropTypes.func,
+  anotherSurvey: PropTypes.func,
+}
 
 export default QuestionList;
